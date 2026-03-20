@@ -28,7 +28,7 @@ namespace HomeCinemaKC
                 {
                     options.Authority = "http://localhost:8080/realms/home-cinema";
                     options.ClientId = "home-cinema";
-                    options.ClientSecret = "7xJvRvaLQ0QpFYw296EnwuY2b6VjSDt6"; // Підставити свій код з keycloak
+                    options.ClientSecret = "Your client secret key"; // Підставити свій код з keycloak
                     options.ResponseType = "code";
                     options.SaveTokens = true;
                     options.Scope.Add("openid");
