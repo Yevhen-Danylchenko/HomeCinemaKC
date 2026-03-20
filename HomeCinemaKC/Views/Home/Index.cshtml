@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Головна";
+}
+
+<div class="text-center py-5">
+    <h1 style="font-size: 3rem;">🎬 CinemaOnline</h1>
+    <p class="lead" style="color: #999;">
+        Тисячі фільмів та серіалів. Дивіться будь-де, будь-коли.
+    </p>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <p>Вітаємо, <strong style="color: #055219;">@User.Identity.Name</strong>!</p>
+        <a asp-action="Catalog" class="btn btn-cinema btn-lg">Перейти до каталогу</a>
+    }
+    else
+    {
+        <a asp-action="Catalog" class="btn btn-cinema btn-lg">
+            Увійти та почати перегляд
+        </a>
+    }
+</div>
+
+<hr style="border-color: #333;" />
+
+<h4 class="mb-3">🔥 Популярне сьогодні</h4>
+<div class="row g-3">
+    @{
+        var movies = new[]
+        {
+            ("Інтерстеллар", "Sci-Fi", "8.7", "2год 49хв"),
+            ("Початок", "Thriller", "8.8", "2год 28хв"),
+            ("Дюна: Частина 2", "Sci-Fi", "8.5", "2год 46хв"),
+            ("Опенгаймер", "Drama", "8.3", "3год 01хв"),
+        };
+    }
+    @foreach (var (title, genre, rating, duration) in movies)
+    {
+        <div class="col-md-3">
+            <div class="card p-3 h-100">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge badge-rating">⭐ @rating</span>
+                    <small style="color: #777;">@duration</small>
+                </div>
+                <h5 class="navbar-brand">@title</h5>
+                <small style="color: #999;">@genre</small>
+                <div class="mt-auto pt-3">
+                    <a asp-action="Catalog"
+                           class="btn btn-outline-light btn-sm w-100">
+                        ▶ Дивитися
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

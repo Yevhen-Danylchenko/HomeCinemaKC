@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Профіль";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h3 class="navbar-brand">👤 Профіль користувача</h3>
+            <hr style="border-color: #333;" />
+            <p class="navbar-brand"><strong>Ім'я:</strong> @User.Identity?.Name</p>
+
+            @foreach (var claim in User.Claims)
+            {
+                if (claim.Type.Contains("name") || claim.Type.Contains("email"))
+                {
+                    <p class="par">
+                        <strong>@claim.Type.Split('/').Last():</strong>
+                        @claim.Value
+                    </p>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h3>🔑 Усі Claims з Keycloak</h3>
+            <hr style="border-color: #333;" />
+            <table class="table table-dark table-sm">
+                <thead>
+                    <tr><th>Тип</th><th>Значення</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in User.Claims)
+                    {
+                        <tr>
+                            <td style="font-size:0.8rem;">@claim.Type</td>
+                            <td style="font-size:0.8rem;">@claim.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Logout" class="btn btn-outline-light mt-3">Вийти з акаунту</a>

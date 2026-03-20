@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — CinemaOnline</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body { background-color: #282928; color: #e5e5e5; }
+        .navbar { background-color: #164052 !important; }
+        .navbar-brand { color: #660818 !important; font-weight: bold; font-size: 1.5rem; }
+        .par { color: #055219 !important; font-weight: 200; font-size: 1.2rem; }
+        .nav-link { color: #e5e5e5 !important; }
+        .nav-link:hover { color: #055219 !important; }
+        .btn-cinema { background-color: #055219; color: white; border: none; }
+        .btn-cinema:hover { background-color: #043d16; color: white; }
+        .card { background-color: #1a1a2e; border: none; border-radius: 8px; }
+        .card:hover { transform: scale(1.03); transition: 0.2s; }
+        .badge-rating { background-color: #055219; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">🎬 CinemaOnline</a>
+        <div class="navbar-nav ms-auto">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a class="nav-link" asp-controller="Home" asp-action="Catalog">Каталог</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Admin">Адмін-панель</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Profile">
+                    👤 @User.Identity.Name
+                </a>
+                <a class="nav-link" asp-controller="Account" asp-action="Register">Реєстрація</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Logout">Вийти</a>
+            }
+            else
+            {
+                <a class="nav-link btn btn-cinema btn-sm px-3"
+                   asp-action="Catalog">Увійти</a>
+            }
+        </div>
+    </div>
+</nav>
+<div class="container">
+    @RenderBody()
+</div>
+</body>
+</html>

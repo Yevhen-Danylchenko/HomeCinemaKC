@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Каталог";
+}
+
+<h2>🎞️ Каталог фільмів</h2>
+<p>
+    Вітаємо, <strong style="color: #055219;">@User.Identity?.Name</strong>!
+    Оберіть фільм для перегляду.
+</p>
+
+<div class="row g-3 mt-2">
+    @{
+        var catalog = new[]
+        {
+            ("Інтерстеллар", "Sci-Fi", "8.7", "Команда дослідників подорожує крізь червоточину в космосі"),
+            ("Початок", "Thriller", "8.8", "Злодій, який краде секрети з підсвідомості під час сну"),
+            ("Дюна: Частина 2", "Sci-Fi", "8.5", "Пол Атрідес об'єднується з фрименами для помсти"),
+            ("Опенгаймер", "Drama", "8.3", "Історія створення атомної бомби та її наслідків"),
+            ("Бетмен", "Action", "7.8", "Темний лицар розкриває корупцію в Готемі"),
+            ("Все всюди й одразу", "Comedy", "7.9", "Жінка відкриває зв'язок з паралельними всесвітами"),
+            ("Топ Ган: Меверік", "Action", "8.2", "Легендарний пілот повертається навчати нове покоління"),
+            ("Паразити", "Thriller", "8.5", "Бідна сім'я проникає в життя багатих"),
+        };
+    }
+    @foreach (var (title, genre, rating, desc) in catalog)
+    {
+        <div class="col-md-3">
+            <div class="card p-3 h-100">
+                <span class="badge badge-rating mb-2" style="width: fit-content;">
+                    ⭐ @rating
+                </span>
+                <h5 class="navbar-brand">@title</h5>
+                <small style="color: #999;" class="mb-2">@genre</small>
+                <p style="font-size: 0.85rem; color: #aaa;">@desc</p>
+                <div class="mt-auto">
+                    <button class="btn btn-cinema btn-sm w-100">▶ Дивитися</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
